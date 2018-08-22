@@ -9,8 +9,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "buildlibs": "ng build --prod dynamicelement1 & ng build --prod dynamicelement2 & ng build --prod dynamicelement3",
+    "buildlibsdebug": "ng build dynamicelement1 & ng build dynamicelement2 & ng build dynamicelement3",
     "buildelements": "ng build --prod dynamicdiscovery1 & ng build --prod dynamicdiscovery2 & ng build --prod dynamicdiscovery3",
-    "package-elements": "npm run buildlibs & npm run buildelements & gulp"
+    "buildelementsdebug": "ng build dynamicdiscovery1 & ng build dynamicdiscovery2 & ng build dynamicdiscovery3",
+    "package-elements": "npm run buildlibs & npm run buildelements & gulp",
+    "package-elementsdebug": "npm run buildlibsdebug & npm run buildelementsdebug & gulp"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +28,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@webcomponents/custom-elements": "^1.2.0",
+    "@webcomponents/webcomponentsjs": "^2.1.0",
     "core-js": "^2.5.4",
     "document-register-element": "1.8.1",
     "rxjs": "^6.0.0",

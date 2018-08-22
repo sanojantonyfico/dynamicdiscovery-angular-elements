@@ -4,11 +4,11 @@ import { Injector, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Dynamicelement3Component } from 'dynamicelement3';
 import { createCustomElement } from '@angular/elements';
-import 'zone.js';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Dynamicelement3Component
   ],
   imports: [
     BrowserModule

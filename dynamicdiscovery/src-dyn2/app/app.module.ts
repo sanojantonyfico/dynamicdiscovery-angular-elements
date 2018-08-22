@@ -4,21 +4,21 @@ import { Injector, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Dynamicelement2Component } from 'dynamicelement2';
 import { createCustomElement } from '@angular/elements';
-import 'zone.js';
 
-@NgModule({
-  declarations: [
-    AppComponent
+@NgModule ( {
+  declarations   : [
+    AppComponent,
+    Dynamicelement2Component
   ],
-  imports: [
+  imports        : [
     BrowserModule
   ],
   entryComponents: [
     Dynamicelement2Component
   ],
-  providers: [],
-  bootstrap: []
-})
+  providers      : [],
+  bootstrap      : []
+} )
 export class AppModule {
 
   constructor ( private injector: Injector ) {
@@ -27,7 +27,7 @@ export class AppModule {
 
   ngDoBootstrap () {
     console.log ( '$$$$$$$$$$$$$$$$$$ Dynamic Element2 Bootstrapped!$$$$$$$$$$$$$$$$$$' );
-    const customElement = createCustomElement ( Dynamicelement2Component, { injector: this.injector} );
+    const customElement = createCustomElement ( Dynamicelement2Component, { injector: this.injector } );
     customElements.define ( 'dynamic-element2', customElement );
   }
 }
