@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "dynamicelement1": [
+        "dist/dynamicelement1"
+      ],
+      "dynamicelement1/*": [
+        "dist/dynamicelement1/*"
+      ],
+      "dynamicelement2": [
+        "dist/dynamicelement2"
+      ],
+      "dynamicelement2/*": [
+        "dist/dynamicelement2/*"
+      ],
+      "dynamicelement3": [
+        "dist/dynamicelement3"
+      ],
+      "dynamicelement3/*": [
+        "dist/dynamicelement3/*"
+      ]
+    }
+  }
+}
