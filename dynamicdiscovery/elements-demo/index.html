@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Elements</title>
+  <base href="/">
+  <style>
+    div#container {
+      height:80vh;
+      width:50vw;
+      border-radius:5px;
+      border: 1px dotted black;
+      background-color: gainsboro;
+    }
+  </style>
+  <script>
+    'use strict';
+
+    document.addEventListener('DOMContentLoaded',function() {
+      document.querySelector('select[name="chooseelement"]').onchange=createElement;
+    },false);
+
+
+    function loadWebcomponent(source, onloadHandler) {
+      var scrpt = document.createElement('script');
+      scrpt.async = true;
+      scrpt.src = source;
+      scrpt.onload = onloadHandler;
+      document.head.appendChild(scrpt);
+    }
+
+    function createElement(event) {
+      if(event.target.value === "...") return true;
+      console.log("###### Creating Element...");
+      if(event.target.value) {
+        var value = JSON.parse(event.target.value);
+        loadWebcomponent(value.download, function() {
+          var element = document.createElement(this.selector);
+          var container = document.querySelector("div#container");
+          container.appendChild(element);
+        }.bind(value));
+      }
+    }
+  </script>
+</head>
+<body>
+
+<select name="chooseelement">
+  <option selected value="...">SELECT</option>
+  <option value='{"download":"dynamic.element1.js","selector":"dynamic-element1"}'>Dynamic Element 1</option>
+  <option value='{"download":"dynamic.element2.js","selector":"dynamic-element2"}'>Dynamic Element 2</option>
+  <option value='{"download":"dynamic.element3.js","selector":"dynamic-element3"}'>Dynamic Element 3</option>
+</select>
+
+<div id="container">
+
+
+</div>
+</body>
+</html>
+
