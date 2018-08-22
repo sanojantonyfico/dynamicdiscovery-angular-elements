@@ -13,6 +13,7 @@
       background-color: gainsboro;
     }
   </style>
+  <script type="text/javascript" src="https://unpkg.com/zone.js"></script>
   <script>
     'use strict';
 
@@ -31,7 +32,7 @@
 
     function createElement(event) {
       if(event.target.value === "...") return true;
-      console.log("###### Creating Element...");
+      console.log("###### Creating Element..." + event.target.value);
       if(event.target.value) {
         var value = JSON.parse(event.target.value);
         loadWebcomponent(value.download, function() {
@@ -50,11 +51,10 @@
   <option value='{"download":"dynamic.element1.js","selector":"dynamic-element1"}'>Dynamic Element 1</option>
   <option value='{"download":"dynamic.element2.js","selector":"dynamic-element2"}'>Dynamic Element 2</option>
   <option value='{"download":"dynamic.element3.js","selector":"dynamic-element3"}'>Dynamic Element 3</option>
+  <option value='showall'>Show All</option>
 </select>
 
 <div id="container">
-
-
 </div>
 </body>
 </html>
