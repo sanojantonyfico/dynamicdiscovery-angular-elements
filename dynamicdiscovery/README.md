@@ -1,11 +1,11 @@
-# Dynamicdiscovery
+# Dynamic discovery and rendering of angular elements
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
 
 The primary aim is to simulate integrating three angular elements from three different teams into a common app.
-This is right now the integrator is a simple html file. It could be an angular app. 
+Currently the integrator is a simple html file. 
 
-This project will move to make the integrator an angular app. 
+This project will be updated to make the integrator an angular app. 
 dynamicdiscovery project will become that integrator and will add ngx-build-plus to provide 
 partial web-pack files. This allows us to have a single app supply all dependencies rather than each angular element coming with
 their dependencies and messing up the final app.  
