@@ -11,37 +11,41 @@ partial web-pack files. This allows us to have a single app supply all dependenc
 their dependencies and messing up the final app.  
 
 So currently this project has three angular element library projects, 
- a. dynamicelement1
- b. dynamicelement2
- c. dynamicelement3
+<ul>
+ <li> dynamicelement1</li>
+ <li> dynamicelement2</li>
+ <li> dynamicelement3</li>
+</ul>
  
  and for each library there is a partial angular app which bootstraps a component from the library.
  Partial apps are
- a. dynamicdiscovery1 (src-dyn1)  
- b. dynamicdiscovery2 (src-dyn2)
- c. dynamicdiscovery3 (src-dyn3)
+ <ul>
+ <li> dynamicdiscovery1 (src-dyn1) </li>  
+ <li> dynamicdiscovery2 (src-dyn2) </li>
+ <li> dynamicdiscovery3 (src-dyn3) </li>
+ </ul>
  
-The main app source is src. Not used at this moment. but will be used when ngx-build-plus is added.
+The main app source is src. Not used at this moment. but will be used when <a href="https://www.npmjs.com/package/ngx-build-plus">ngx-build-plus</a> is added.
  
-## Development server
+## Demo server
 
-Once the packaging is done, a webserver will be serving index.html from elements-demo using gulp webserver at port 9080.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Once packaging is done, a webserver will be serving index.html from <b>elements-demo</b> folder using gulp webserver at port 9080.
 
 ## Build
-
-Run 'npm run package-elements' for production build of all angular elements, all bootstrap 
+<p>
+Run <code>npm run package-elements</code> for production build of all angular elements, all bootstrap 
          partial apps and then packaging angular element js files. extractCss has been turned off so only js files are generated.
-Run 'npm run package-elementsdebug' for building a debug version which allows better debugging and to see clear error messages. 
-
-Both with build and launch a demo web page which allows a UI which displays a list of angular elements you can select and render..
-Note: ShowAll is not implemented. 
+         
+Run <code>npm run package-elementsdebug</code> for building a debug version which allows better debugging and to see clear error messages. 
+</p>
+<p>
+Both commands will build and launch a demo web page, which renders a UI, which displays a list of angular elements you can select and render.
+</p>
+<p>
+<b>Note</b>: ShowAll is not implemented. 
       After each selection and rendering, click refresh button to reset the state. There is a name collision with createCustomElement.
       Eventually we wanted to support show all option where all dynamically loaded angular elements can be displayed at once.
-
+</p>
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
