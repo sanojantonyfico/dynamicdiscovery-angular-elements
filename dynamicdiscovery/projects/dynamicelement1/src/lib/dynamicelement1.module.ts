@@ -5,6 +5,7 @@ import { Dynamicelement1Component } from './dynamicelement1.component';
   imports: [
   ],
   declarations: [Dynamicelement1Component],
-  exports: [Dynamicelement1Component]
+  exports: [Dynamicelement1Component],
+  entryComponents: [Dynamicelement1Component]
 })
 export class Dynamicelement1Module { }

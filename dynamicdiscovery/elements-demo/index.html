@@ -12,10 +12,38 @@
       border: 1px dotted black;
       background-color: gainsboro;
     }
+
+    .element-style1 {
+      height:20vh;
+      width:45vw;
+      border-radius:5px;
+      border: 1px dotted black;
+      background-color: royalblue;
+      margin:5px;
+      padding:10px;
+    }
+    .element-style2 {
+      height:20vh;
+      width:45vw;
+      border-radius:5px;
+      border: 1px dotted black;
+      background-color: aquamarine;
+      margin:5px;
+      padding:10px;
+    }
+    .element-style3 {
+      height:20vh;
+      width:45vw;
+      border-radius:5px;
+      border: 1px dotted black;
+      background-color: orange;
+      margin:5px;
+      padding:10px;
+    }
   </style>
-  <script type="text/javascript" src="https://unpkg.com/zone.js"></script>
   <script>
     'use strict';
+
 
     document.addEventListener('DOMContentLoaded',function() {
       document.querySelector('select[name="chooseelement"]').onchange=createElement;
@@ -23,35 +51,93 @@
 
 
     function loadWebcomponent(source, onloadHandler) {
-      var scrpt = document.createElement('script');
-      scrpt.async = true;
-      scrpt.src = source;
-      scrpt.onload = onloadHandler;
-      document.head.appendChild(scrpt);
+      return new Promise(function(resolve,reject) {
+        var scrpt = document.createElement('script');
+        scrpt.async = true;
+        scrpt.src = source;
+        scrpt.onload = function() { resolve("loaded script");};
+        document.head.appendChild(scrpt);
+      });
+
+    }
+
+    function clearContainer() {
+      document.querySelector("div#container").innerHTML="";
     }
 
     function createElement(event) {
-      if(event.target.value === "...") return true;
+      clearContainer();
+      if(event.target.value === "...") {  return true; }
       console.log("###### Creating Element..." + event.target.value);
       if(event.target.value) {
         var value = JSON.parse(event.target.value);
-        loadWebcomponent(value.download, function() {
-          var element = document.createElement(this.selector);
-          var container = document.querySelector("div#container");
-          container.appendChild(element);
-        }.bind(value));
+        var container = document.querySelector("div#container");
+        if(value.mode === "multiple") {
+          var elemPromises = [];
+          for(var i=0 ; i < value.elements.length; i++) {
+            if(!customElements.get(value.elements[i].selector)) {
+              elemPromises.push(loadWebcomponent(value.elements[i]));
+            }
+          }
+          Promise.all(elemPromises).then( function() {
+            for (var i = 0; i < value.elements.length; i++) {
+              var element = document.createElement(value.elements[i].selector);
+              container.appendChild(element);
+            }
+          });
+        }
+        else {
+          if(!customElements.get(value.selector)) {
+            loadWebcomponent(value.download).then(function () {
+              var element = document.createElement(value.selector);
+              container.appendChild(element);
+            });
+          }
+          else {
+            var element = document.createElement(value.selector);
+            container.appendChild(element);
+          }
+        }
       }
     }
   </script>
 </head>
 <body>
+<!-- Polyfills for Browsers supporting
+     Custom Elements. Needed b/c we downlevel
+     to ES5. See: @webcomponents/custom-elements
+-->
+<script src="./native-shim.js"></script>
+
+<!-- Polyfills for Browsers not supporting
+     Custom Elements. See: @webcomponents/custom-elements
+-->
+<script src="./custom-elements.min.js"></script>
+
+<!-- Zone.js -->
+<!--
+  Consider excluding zone.js when creating
+  custom Elements by using the noop zone.
+-->
+<script src="./zone.js"></script>
+
+<!-- Rx -->
+<script src="./rxjs.umd.js"></script>
+
+<!-- Angular Packages -->
+<script src="./core.umd.js"></script>
+<script src="./common.umd.js"></script>
+<script src="./platform-browser.umd.js"></script>
+<script src="./elements.umd.js"></script>
+
+<!-- Custom Element -->
 
 <select name="chooseelement">
   <option selected value="...">SELECT</option>
-  <option value='{"download":"dynamic.element1.js","selector":"dynamic-element1"}'>Dynamic Element 1</option>
-  <option value='{"download":"dynamic.element2.js","selector":"dynamic-element2"}'>Dynamic Element 2</option>
-  <option value='{"download":"dynamic.element3.js","selector":"dynamic-element3"}'>Dynamic Element 3</option>
-  <option value='showall'>Show All</option>
+  <option value='{"mode":"single", "download":"dynamic.element1.js","selector":"dynamic-element1"}'>Dynamic Element 1</option>
+  <option value='{"mode":"single", "download":"dynamic.element2.js","selector":"dynamic-element2"}'>Dynamic Element 2</option>
+  <option value='{"mode":"single", "download":"dynamic.element3.js","selector":"dynamic-element3"}'>Dynamic Element 3</option>
+  <option value='{"mode":"multiple", "elements":[{"download":"dynamic.element1.js","selector":"dynamic-element1"},{"download":"dynamic.element2.js","selector":"dynamic-element2"}, {"download":"dynamic.element3.js","selector":"dynamic-element3"}]}'>Show All</option>
 </select>
 
 <div id="container">

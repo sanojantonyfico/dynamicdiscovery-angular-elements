@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'lib-dynamicelement2',
   template: `
-    <p>
+    <div class="element-style2">
       dynamicelement2 works!
-    </p>
+    </div>
   `,
   styles: []
 })

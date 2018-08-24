@@ -2,20 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Injector, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { Dynamicelement2Component } from 'dynamicelement2';
+import { Dynamicelement2Component, Dynamicelement2Module } from 'dynamicelement2';
 import { createCustomElement } from '@angular/elements';
 
 @NgModule ( {
   declarations   : [
-    AppComponent,
-    Dynamicelement2Component
+    AppComponent
   ],
   imports        : [
-    BrowserModule
+    BrowserModule,
+    Dynamicelement2Module
   ],
-  entryComponents: [
-    Dynamicelement2Component
-  ],
+  entryComponents: [],
   providers      : [],
   bootstrap      : []
 } )

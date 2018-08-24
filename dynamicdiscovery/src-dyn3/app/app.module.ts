@@ -4,17 +4,18 @@ import { Injector, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Dynamicelement3Component } from 'dynamicelement3';
 import { createCustomElement } from '@angular/elements';
+import { Dynamicelement3Module } from 'dynamicelement3';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    Dynamicelement3Component
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    Dynamicelement3Module
   ],
   entryComponents: [
-    Dynamicelement3Component
+
   ],
   providers: [],
   bootstrap: []
